@@ -1,0 +1,31 @@
+.container4{
+    display: flex;
+    overflow: hidden;
+    vertical-align: middle;
+    white-space: nowrap;
+    /* margin-top: 35px;
+    width: 100%;
+    justify-content: center; */
+  }
+
+  .search{
+    width: 200px;
+    height: 40px;
+    background: #2b303b;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #fff;
+    padding-left: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+
+.boton {
+    font-family: 'Rock Salt', cursive;
+    font-weight: bolder;
+    border-radius: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+} 
