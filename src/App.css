@@ -1,7 +1,28 @@
+.App {
+   margin: 0;
+   padding: 0
+}
+
+.wrapper {
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 100%;
+   padding: 0;
+   margin: 0;
+   overflow: hidden;
+   background-color: black;
+   z-index: 1000;
+}
+
 .header{
    display: flex;
+   
    justify-content: center;
+   background-color: black;
    padding: 0;
+   margin: 0;
+   
 }
 
 .titulo {
@@ -13,7 +34,10 @@
 
 
 .container {
+   
    display: flex;
    justify-content: center;
+   width: 100%;
+   
 }
 

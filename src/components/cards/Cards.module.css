@@ -1,6 +1,14 @@
 .container {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+   margin-top: 110px;
+    
+}
+
+.container::after {
+    content: "";    
+    
 }
 
 @media screen and (max-width: 767px) {

@@ -1,7 +1,7 @@
 // Commons imports
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 // Styles
 import './App.css';
 // Assets
@@ -11,14 +11,31 @@ import Cards from './components/cards/Cards';
 import Nav from './components/nav/Nav';
 import About from './components/about/About';
 import Detail from './components/detail/Detail';
+import NotFound from './components/notfound/NotFound';
+import Form from './components/form/Form';
+import Favorites from './components/favorites/Favorites';
 
 function App() {
 
+   const { pathname } = useLocation();
+   
    const [characters, setCharacters] = useState([]);
+   
+   const [access, setAccess] = useState(false);
+   const EMAIL = 'jaime.tablet25@gmail.com';
+   const PASSWORD = 'mito1234';
+   const navigate = useNavigate();
 
-   // const onSearch = (character) => {
-   //    setCharacters([...characters, character])
-   // }
+   const login = (userData) => {
+      if (userData.email === EMAIL && userData.password === PASSWORD) {
+         setAccess(true);
+         navigate('/home');
+      }
+   }
+
+   useEffect(() =>{
+      !access && navigate('/');
+   }, [access])
 
    function onSearch(id) {
       axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
@@ -36,19 +53,24 @@ function App() {
 
    return (
       <div className='App'>
+       <section className='wrapper'>
          <div className='header'>
             <img className='titulo' src={title} alt='titulo'/>
          </div>
+
          <div className='container'>
-            <Nav onSearch={onSearch} />
+           {pathname !== '/' && <Nav onSearch={onSearch} />}
          </div>
+       </section>
+         
          <Routes>
+            <Route path='/' element={<Form login={login} />} />
             <Route path='/home' element={<Cards characters={characters} onClose={onClose} />} />
             <Route path='/about' element={<About />} />
             <Route path='/detail/:id' element={<Detail />} />
+            <Route path='/favorites' element={<Favorites />} />
+            <Route path='*' element={<NotFound />} />
          </Routes>
-         
-         
       </div>
    );
 }

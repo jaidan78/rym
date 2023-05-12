@@ -8,8 +8,9 @@ const { container, boton } = style;
 const Nav = ({onSearch}) =>{
     return(
         <div className={container} >
-            <Link to={'/about'}><button className={boton} >About</button></Link>
             <Link to={'/home'}><button className={boton} >Home</button></Link>
+            <Link to={'/favorites'}><button className={boton} >Favorites</button></Link>
+            <Link to={'/about'}><button className={boton} >About</button></Link>
             <SearchBar onSearch={onSearch} />
         </div>
     );
