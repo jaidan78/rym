@@ -1,0 +1,10 @@
+.boton {
+  font-family: "Rock Salt", cursive;
+  font-weight: bolder;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background-color: rgb(141, 194, 111);
+}
