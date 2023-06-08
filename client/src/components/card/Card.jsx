@@ -10,15 +10,20 @@ const { card, head, heart, boton, divCaja, caja, img, nombre, especie, genero, c
   
    const [isFav, setIsFav] = useState(false);
 
-   const handleFavorite = (event) => {
-      event.preventDefault();
-      if (isFav) {
-         setIsFav(false);
-         removeFav(id);
-      } else {
-         setIsFav(true);
-         addFav({ onClose, id, image, name, gender , species});
-      }
+   // const handleFavorite = (event) => {
+   //    event.preventDefault();
+   //    if (isFav) {
+   //       setIsFav(false);
+   //       removeFav(id);
+   //    } else {
+   //       setIsFav(true);
+   //       addFav({ onClose, id, image, name, gender , species});
+   //    }
+   // }
+
+   const handleFavorite = () => {
+      isFav ? removeFav(id) : addFav({ onClose, id, image, name, gender , species});
+      setIsFav(!isFav);
    }
 
    useEffect(() => {
@@ -32,18 +37,17 @@ const { card, head, heart, boton, divCaja, caja, img, nombre, especie, genero, c
    return (
       <div className={card} key={id}>
          <div className={head}>
-         {
-            isFav ? (
-               <button className={heart} onClick={handleFavorite}>❤️</button>
-            ) : (
-               <button  className={heart} onClick={handleFavorite}>🤍</button>
-            )
-         }
-         {
-            isFav ? null :(
-               <button className={boton}  onClick={() => {onClose(id)}}>X</button>
-            )
-         }
+            {
+               isFav ? (
+                  <button className={heart} onClick={handleFavorite}>❤️</button>
+               ) : (
+                  <button  className={heart} onClick={handleFavorite}>🤍</button>
+               )
+            }
+            {
+               isFav ? null:
+                  <button className={boton} onClick={() => {onClose(id)}}>X</button>      
+            }
          </div>
          <div className={divCaja}>
             <div className={caja}>
@@ -67,7 +71,7 @@ const { card, head, heart, boton, divCaja, caja, img, nombre, especie, genero, c
    );
 }
 
-export function mapDispatchToProps(dispatch) {
+const mapDispatchToProps = (dispatch) => {
    return {
       addFav: (char)=>{
          dispatch(addFav(char))
@@ -78,7 +82,7 @@ export function mapDispatchToProps(dispatch) {
    }
 }
 
-export function mapStateToProps(state) {
+const mapStateToProps = (state) => {
    return {
       myFavorites: state.myFavorites
    }
